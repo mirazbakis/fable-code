@@ -1,0 +1,14 @@
+{
+  "name": "fable-code",
+  "owner": {
+    "name": "mirazbakis",
+    "url": "https://github.com/mirazbakis"
+  },
+  "plugins": [
+    {
+      "name": "fable-code",
+      "source": "./",
+      "description": "Persistent memory, cheap-model delegation, context guards and a control pane for Claude Code."
+    }
+  ]
+}

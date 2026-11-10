@@ -1,0 +1,96 @@
+{
+  "name": "fable-code",
+  "version": "0.1.0",
+  "description": "Agentic coding upgrades for any Claude model: persistent project memory, cheap-model delegation (Claude Haiku, Gemini, or any OpenAI-compatible endpoint), context guards, and a control pane.",
+  "author": {
+    "name": "mirazbakis",
+    "url": "https://github.com/mirazbakis"
+  },
+  "homepage": "https://github.com/mirazbakis/fable-code",
+  "repository": "https://github.com/mirazbakis/fable-code",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "delegation",
+    "gemini",
+    "tokens",
+    "context",
+    "agents"
+  ],
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "delegateProvider": {
+      "type": "string",
+      "title": "Delegation provider",
+      "description": "Where the delegate and digest tools send small tasks: claude (your own session, no key needed), gemini, or openai-compatible (OpenRouter, Ollama, LM Studio, ...).",
+      "options": [
+        "claude",
+        "gemini",
+        "openai-compatible"
+      ],
+      "default": "claude"
+    },
+    "fastModel": {
+      "type": "string",
+      "title": "Fast Claude model",
+      "description": "The Claude model for delegated work, digests, scouts and automatic memory. An alias such as haiku or sonnet, or a full model id.",
+      "default": "haiku"
+    },
+    "geminiApiKey": {
+      "type": "string",
+      "title": "Gemini API key",
+      "description": "Only needed when the provider is gemini. Stored in secure storage.",
+      "sensitive": true,
+      "default": ""
+    },
+    "geminiModel": {
+      "type": "string",
+      "title": "Gemini model",
+      "description": "The Gemini model id for delegated work.",
+      "default": "gemini-2.5-flash"
+    },
+    "openaiBaseUrl": {
+      "type": "string",
+      "title": "OpenAI-compatible base URL",
+      "description": "Base URL ending in /v1. The default is a local Ollama server.",
+      "default": "http://localhost:11434/v1"
+    },
+    "openaiApiKey": {
+      "type": "string",
+      "title": "OpenAI-compatible API key",
+      "description": "Bearer key for the endpoint; leave empty for a local server. Stored in secure storage.",
+      "sensitive": true,
+      "default": ""
+    },
+    "openaiModel": {
+      "type": "string",
+      "title": "OpenAI-compatible model",
+      "description": "The model name the endpoint expects.",
+      "default": "qwen2.5-coder:7b"
+    },
+    "autoMemory": {
+      "type": "boolean",
+      "title": "Automatic memory",
+      "description": "After substantial turns, the fast Claude model picks out durable project facts and saves them.",
+      "default": true
+    },
+    "readGuardKb": {
+      "type": "number",
+      "title": "Large read guard (KB)",
+      "description": "Whole-file Reads above this size are stopped with a cheaper route offered. 0 turns the guard off.",
+      "default": 120
+    },
+    "dedupeReads": {
+      "type": "boolean",
+      "title": "Skip repeated reads",
+      "description": "Stop a re-read of an unchanged file the conversation already holds, once. A second try goes through.",
+      "default": true
+    },
+    "showBand": {
+      "type": "boolean",
+      "title": "Show the status band",
+      "description": "Show the fable-code line above the prompt.",
+      "default": true
+    }
+  }
+}
